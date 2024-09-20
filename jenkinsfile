@@ -34,7 +34,7 @@ pipeline {
 
     post {
         always {
-            // Notificar sucesso ou falha
+            // Notificar sucesso ou falha teste
             echo 'Pipeline completo.'
         }
     }
