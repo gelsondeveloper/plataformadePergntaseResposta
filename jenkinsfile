@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clonar o código do GitHub
+                git branch: 'main', url: 'https://github.com/gelsondeveloper/plataformadePergntaseResposta.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Comando de build da sua aplicação (exemplo com Node.js)
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Comando de teste (exemplo com Node.js)
+                sh 'npm test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                // Comando de deploy
+                sh './deploy.sh'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Notificar sucesso ou falha
+            echo 'Pipeline completo.'
+        }
+    }
+}
